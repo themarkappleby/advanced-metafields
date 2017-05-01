@@ -1,0 +1,21 @@
+{
+  "name": "advanced-metafields",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.48.0",
+    "bcrypt": "^1.0.2",
+    "express": "^4.15.2",
+    "lodash": "^4.17.4",
+    "nodemon": "^1.11.0",
+    "nonce": "^1.0.4",
+    "request": "^2.81.0"
+  }
+}
