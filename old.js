@@ -1,3 +1,7 @@
+// -----------------------------------------------------
+// Make sure to delete DynamoDB entry to test end-to-end
+// -----------------------------------------------------
+
 // Libs
 const AWS = require('aws-sdk')
 const express = require('express')

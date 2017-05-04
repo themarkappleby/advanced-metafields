@@ -6,9 +6,22 @@
     <h1>open console to see sample request response</h1>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-      $.get('http://localhost:3000/developmentsandbox.myshopify.com/admin/products.json', function (res) {
-        console.log(res)
+      var baseURL = 'http://localhost:3000/developmentsandbox.myshopify.com/admin/'
+
+      $.get(baseURL + 'products.json', function (res) {
+        if (auth(res)) {
+          console.log('do the thing!')
+        }
       })
+
+      function auth (res) {
+        if (res.statusCode === 401 && res.redirect) {
+          window.location = res.redirect
+          // window.location = 'http://localhost:3000/auth'
+        } else {
+          return true
+        }
+      }
     </script>
   </body>
 </html>

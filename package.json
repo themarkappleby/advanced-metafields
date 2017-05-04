@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app/index & nodemon lambda/index"
+    "start": "nodemon app/index & nodemon lambda/index",
+    "old": "nodemon old"
   },
   "keywords": [],
   "author": "",
