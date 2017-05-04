@@ -4,6 +4,7 @@ const express = require('express')
 const request = require('request')
 const generateNonce = require('nonce')()
 const _ = require('lodash')
+const fs = require('fs')
 
 // Constants
 const app = express()
@@ -132,6 +133,14 @@ function testRequest (shop, token, res) {
     }
   })
 }
+
+app.get('/test', function (req, res) {
+  fs.readFile('./public.html', 'utf8', function (err, data) {
+    if (!err) {
+      res.send(data)
+    }
+  })
+})
 
 function validNonce () {
   return true

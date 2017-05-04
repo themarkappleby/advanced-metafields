@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>test</title>
+  </head>
+  <body>
+    <h1>open console to see sample request response</h1>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      $.get('http://localhost:3000/developmentsandbox.myshopify.com/admin/products.json', function (res) {
+        console.log(res)
+      })
+    </script>
+  </body>
+</html>
