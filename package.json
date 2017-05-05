@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon app/index & nodemon lambda/index",
-    "old": "nodemon old"
+    "old": "nodemon old",
+    "serve": "ngrok http localhost:3000"
   },
   "keywords": [],
   "author": "",

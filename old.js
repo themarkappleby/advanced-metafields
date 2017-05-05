@@ -9,6 +9,7 @@ const request = require('request')
 const generateNonce = require('nonce')()
 const _ = require('lodash')
 const fs = require('fs')
+const domain = 'https://14200e0e.ngrok.io'
 
 // Constants
 const app = express()
@@ -20,24 +21,29 @@ const dynamodb = new AWS.DynamoDB({
 })
 
 app.get('/', function (req, res) {
-  const shop = _.get(req, 'query.shop')
+  let shop = _.get(req, 'query.shop')
+  shop = 'developmentsandbox.myshopify.com'
   if (!shop) res.send("error: invalid or missing 'shop' query parameter")
-  getToken(shop, function (token) {
+  // getToken(shop, function (token) {
+    /*
     if (token) {
       proxy(req, token, function () {
         res.send(token)
       })
     } else {
+      */
       requestAuth(shop, res)
+      /*
     }
-  })
+   })
+   */
 })
 
 function requestAuth (shop, res) {
   saveNonce(shop, function (nonce) {
     const params = {
       scopes: 'write_content,write_products',
-      redirectUri: 'http://localhost:3000/done'
+      redirectUri: domain + '/done'
     }
     res.redirect(`https://${shop}/admin/oauth/authorize?client_id=${apiKey}&scope=${params.scopes}&redirect_uri=${params.redirectUri}&state=${nonce}`)
   })
