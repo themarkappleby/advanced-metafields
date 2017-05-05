@@ -6,21 +6,36 @@
     <h1>open console to see sample request response</h1>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-      var baseURL = 'http://localhost:3000/developmentsandbox.myshopify.com/admin/'
 
-      $.get(baseURL + 'products.json', function (res) {
+      $.get(req('products.json'), function (res) {
         if (auth(res)) {
-          console.log('do the thing!')
+          console.log(res)
         }
       })
+
+      function req (endpoint) {
+        var baseURL = 'http://localhost:3000/developmentsandbox.myshopify.com/admin/'
+        url = baseURL + endpoint
+        url = url + '?token=' + getParameterByName('token')
+        return url
+      }
 
       function auth (res) {
         if (res.statusCode === 401 && res.redirect) {
           window.location = res.redirect
-          // window.location = 'http://localhost:3000/auth'
         } else {
           return true
         }
+      }
+
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
       }
     </script>
   </body>
